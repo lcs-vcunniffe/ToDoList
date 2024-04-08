@@ -19,11 +19,14 @@ struct LandingView: View {
         NavigationView {
             VStack {
                 List {
-                    
+                    Text("Study for chemistry quiz")
+                    Text("Finish computer science assignment")
+                    Text("Go for a run across campus")
                 }
                 .searchable(text: $searchText)
                 
             }
+            .navigationTitle("To Do")
         }
     }
 }
