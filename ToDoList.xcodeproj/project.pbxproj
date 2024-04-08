@@ -51,8 +51,10 @@
 		2E7F17622BC19B3700581D24 /* ToDoList */ = {
 			isa = PBXGroup;
 			children = (
+				2E7F17732BC4422900581D24 /* Helpers */,
 				2E7F17632BC19B3700581D24 /* ToDoListApp.swift */,
-				2E7F17652BC19B3700581D24 /* LandingView.swift */,
+				2E7F17722BC441EA00581D24 /* Views */,
+				2E7F17712BC441E300581D24 /* Model */,
 				2E7F17672BC19B3B00581D24 /* Assets.xcassets */,
 				2E7F17692BC19B3B00581D24 /* Preview Content */,
 			);
@@ -65,6 +67,28 @@
 				2E7F176A2BC19B3B00581D24 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		2E7F17712BC441E300581D24 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		2E7F17722BC441EA00581D24 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				2E7F17652BC19B3700581D24 /* LandingView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		2E7F17732BC4422900581D24 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
