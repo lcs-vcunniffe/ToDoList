@@ -20,8 +20,20 @@ struct LandingView: View {
     var body: some View {
         NavigationView {
             VStack {
-                List(todos) { todo in
+                List($todos) { $todo in
                     ItemView(currentItem: todo)
+                        .swipeActions {
+                            Button(
+                                "Delete",
+                                role: .destructive,
+                                action: {
+                                    delete(todo)
+                                }
+                            )
+                        }
+                        .onTapGesture {
+                            todo.done.toggle()
+                        }
                 }
                 .searchable(text: $searchText)
                 
@@ -31,13 +43,30 @@ struct LandingView: View {
                         text: $newItemDescription
                     )
                     Button("ADD") {
-                        //Add the new to-do item
+                        createToDo(withTitle: newItemDescription)
                     }
                     .font(.caption)
+                    .disabled(newItemDescription.isEmpty == true)
                 }
                 .padding(20)
             }
             .navigationTitle("To Do")
+        }
+    }
+    
+    //MARK: Functions
+    func createToDo(withTitle title: String) {
+        //Create the new to-do item instance
+        let todo = ToDoItem(
+            title: title,
+            done: false
+        )
+        //Append to the array
+        todos.append(todo)
+    }
+    func delete(_ todo: ToDoItem) {
+        todos.removeAll { currentItem in
+            currentItem.id == todo.id
         }
     }
 }
