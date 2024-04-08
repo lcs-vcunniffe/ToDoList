@@ -19,26 +19,17 @@ struct LandingView: View {
         NavigationView {
             VStack {
                 List {
-                    Label(
-                        title: {
-                            Text("Study for chemistry quiz")
-                        }, icon: {
-                            Image(systemName: "circle")
-                        }
+                    ItemView(
+                        title: "Study for chemistry quiz",
+                        done: false
                     )
-                    Label(
-                        title: {
-                            Text("Finish computer science assignment")
-                        }, icon: {
-                            Image(systemName: "circle")
-                        }
+                    ItemView(
+                        title: "Finish computer science assignment",
+                        done: true
                     )
-                    Label(
-                        title: {
-                            Text("Go for a run across campus")
-                        }, icon: {
-                            Image(systemName: "circle")
-                        }
+                    ItemView(
+                        title: "Go for a run around campus",
+                        done: false
                     )
                 }
                 .searchable(text: $searchText)
@@ -62,4 +53,24 @@ struct LandingView: View {
 
 #Preview {
     LandingView()
+}
+
+struct ItemView: View {
+    
+    let title: String
+    let done: Bool
+    
+    var body: some View {
+        Label(
+            title: {
+                Text(title)
+            }, icon: {
+                if done == false {
+                    Image(systemName: "circle")
+                } else {
+                    Image(systemName: "checkmark.circle")
+                }
+            }
+        )
+    }
 }
