@@ -5,10 +5,13 @@
 //  Created by Veda Niav Cunniffe on 2024-04-06.
 //
 
+import SwiftData
 import SwiftUI
 
 struct LandingView: View {
     //MARK: Stored properties
+    //To get to the model context (for changes, etc.)
+    @Environment(\.modelContext) var modelContext
     //In the item being added
     @State var newItemDescription: String = ""
     //In the search field
