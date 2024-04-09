@@ -17,23 +17,17 @@ struct LandingView: View {
     //In the search field
     @State var searchText: String = ""
     //In the list of items
-    @State var todos: [ToDoItem] = exampleItems
+    @Query var todos: [ToDoItem]
     
     //MARK: Computed properties
     var body: some View {
         NavigationView {
             VStack {
-                List($todos) { $todo in
-                    ItemView(currentItem: $todo)
-                        .swipeActions {
-                            Button(
-                                "Delete",
-                                role: .destructive,
-                                action: {
-                                    delete(todo)
-                                }
-                            )
-                        }
+                List {
+                    ForEach(todos) { todo in
+                        ItemView(currentItem: todo)
+                    }
+                    .onDelete(perform: removeRows)
                 }
                 .searchable(text: $searchText)
                 
@@ -61,12 +55,14 @@ struct LandingView: View {
             title: title,
             done: false
         )
-        //Append to the array
-        todos.append(todo)
+        //Use the model context to insert the new to-do
+        modelContext.insert(todo)
     }
-    func delete(_ todo: ToDoItem) {
-        todos.removeAll { currentItem in
-            currentItem.id == todo.id
+    func removeRows(at offsets: IndexSet) {
+        //Accept the offset within the list (the position of the deleted item
+        //Then ask the model context to delete this from the "todos" array for us
+        for offset in offsets {
+            modelContext.delete(todos[offset])
         }
     }
 }
